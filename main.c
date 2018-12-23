@@ -11,10 +11,10 @@
 
 #include "fs.h"
 
-int main()
+void Test1()
 {
-    //fs_create_directories("sandbox/1/2/a");
-    if (fs_create_directory("sandbox"))
+    struct error_code ec = { 0 };
+    if (fs_create_directory("sandbox", &ec))
     {
         printf("OK");
     }
@@ -22,10 +22,10 @@ int main()
     {
         printf("FAILED");
     }
-    //fs::permissions("sandbox/1/2/b", fs::perms::remove_perms | fs::perms::others_all);
-    //fs::create_directory("sandbox/1/2/c", "sandbox/1/2/b");
-    //std::system("ls -l sandbox/1/2");
-    //fs::remove_all("sandbox");
+}
 
+int main()
+{
+    Test1();
     return 0;
 }

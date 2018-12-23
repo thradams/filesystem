@@ -76,10 +76,12 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="error_code.c" />
     <ClCompile Include="fs.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="error_code.h" />
     <ClInclude Include="fs.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
