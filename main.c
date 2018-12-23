@@ -13,14 +13,44 @@
 
 void Test1()
 {
-    struct error_code ec = { 0 };
-    if (fs_create_directory("sandbox", &ec))
+        struct error_code ec = { 0 };
+    if (fs_exists("sandbox", &ec))
     {
-        printf("OK");
+        printf("exist\n");
     }
     else
     {
-        printf("FAILED");
+        printf("not exist\n");
+    }
+
+
+    if (fs_create_directory("sandbox", &ec))
+    {
+        printf("OK\n");
+    }
+    else
+    {
+        printf("FAILED\n");
+    }
+
+    if (fs_exists("sandbox", &ec))
+    {
+        printf("exist\n");
+    }
+    else
+    {
+        printf("not exist\n");
+    }
+
+    fs_remove("sandbox",& ec);
+
+    if (fs_exists("sandbox", &ec))
+    {
+        printf("exist\n");
+    }
+    else
+    {
+        printf("not exist\n");
     }
 }
 

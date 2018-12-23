@@ -2,6 +2,20 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#include "Shlwapi.h"
+
+
+#pragma comment(lib, "Shlwapi.lib")
+
+bool fs_remove(const char* path, struct error_code* ec)
+{
+    return RemoveDirectoryA(path);
+}
+
+bool fs_exists(const char* path, struct error_code* ec)
+{
+    return PathFileExistsA(path);
+}
 
 bool fs_create_directory(const char* path, struct error_code* ec)
 {
@@ -101,6 +115,17 @@ out_error:
 
     errno = saved_errno;
     return false;
+}
+
+bool fs_exists(const char* path, struct error_code* ec)
+{
+    struct stat   buffer;
+    return (stat(path, &buffer) == 0);
+}
+
+bool fs_remove(const char* path, struct error_code* ec)
+{
+    return rmdir(path);
 }
 #endif
 
