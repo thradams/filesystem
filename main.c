@@ -13,6 +13,18 @@
 
 void Test1()
 {
+
+    struct directory_iterator di = { 0 };
+    if (directory_iterator_init(&di, "."))
+    {
+        do
+        {
+            printf("%s %s\n", di.fileName, di.bIsDir ? "(dir)" : "");
+        } while (directory_iterator_next(&di));
+    }
+
+    directory_iterator_destroy(&di);
+
         struct error_code ec = { 0 };
     if (fs_exists("sandbox", &ec))
     {
