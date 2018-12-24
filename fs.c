@@ -58,8 +58,11 @@ bool directory_iterator_next(struct directory_iterator* di)
 {
     WIN32_FIND_DATAA fdFile;
     bool b = FindNextFileA(di->handle, &fdFile);
-    di->bIsDir = fdFile.dwFileAttributes &FILE_ATTRIBUTE_DIRECTORY;
-    strcpy(di->fileName, fdFile.cFileName);
+    if (b)
+    {
+        di->bIsDir = fdFile.dwFileAttributes &FILE_ATTRIBUTE_DIRECTORY;
+        strcpy(di->fileName, fdFile.cFileName);
+    }
     return b;
 }
 
