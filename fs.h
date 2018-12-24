@@ -2,7 +2,10 @@
 
 #include <stdbool.h>
 
-#include "error_code.h"
+struct error_code
+{
+    unsigned int code;
+};
 
 //See https://en.cppreference.com/w/cpp/filesystem
 
