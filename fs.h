@@ -1,8 +1,10 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 
-#define FS_MAX_PATH 256
+#define FS_MAX_PATH 260
 
 struct error_code
 {
@@ -15,6 +17,8 @@ bool fs_create_directory(const char* path, struct error_code* ec);
 bool fs_copy_file(const char* pathfrom, const char* pathto, struct error_code* ec);
 bool fs_exists(const char* path, struct error_code* ec);
 bool fs_remove(const char* path, struct error_code* ec);
+
+size_t fs_file_size(const char* path, struct error_code* ec);
 
 bool fs_current_path(char* pathOut);
 

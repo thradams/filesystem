@@ -35,15 +35,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7d645397-af8c-4a7e-a825-07a3ae16b6bb}</ProjectGuid>
+    <ProjectGuid>{db635d2e-93b9-4abf-a8a5-bdff7903cdbd}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>WindowsLinux</RootNamespace>
+    <RootNamespace>fs_test</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
     <LinuxProjectType>{D51BCBC9-82E9-4017-911E-C93873C4EA2B}</LinuxProjectType>
-    <ProjectName>Linux</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
@@ -77,7 +76,7 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="fs.c" />
-    <ClCompile Include="main.c" />
+    <ClCompile Include="fs_Test.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fs.h" />

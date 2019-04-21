@@ -5,8 +5,14 @@
 #include "Shlwapi.h"
 #include <string.h>
 #include <assert.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #pragma comment(lib, "Shlwapi.lib")
+
+#if FS_MAX_PATH != MAX_PATH
+#error FS_MAX_PATH must be the same size of MAX_PATH
+#endif
 
 void fs_path_split(const char* Path,
     char* Drive,
@@ -21,6 +27,22 @@ bool fs_remove(const char* path, struct error_code* ec)
 {
     return RemoveDirectoryA(path);
 }
+
+size_t fs_file_size(const char* path, struct error_code* ec)
+{
+	size_t s = 0;
+	struct _stat   buffer;
+	if (_stat(path, &buffer) == 0)
+	{
+		s = buffer.st_size;
+	}
+	else
+	{
+		ec->code = errno;
+	}
+	return s;
+}
+
 
 bool fs_exists(const char* path, struct error_code* ec)
 {
@@ -136,6 +158,8 @@ bool fs_current_path(char* pathOut)
 #include <dirent.h>
 #include <string.h>
 #include <unistd.h>
+#include <assert.h>
+
 
 bool fs_create_directory(const char* path, struct error_code* ec)
 {
@@ -210,6 +234,21 @@ out_error:
 
     errno = saved_errno;
     return false;
+}
+
+size_t fs_file_size(const char* path, struct error_code* ec)
+{
+	size_t s = 0;
+	struct stat   buffer;
+	if (stat(path, &buffer) == 0)
+	{
+		s = buffer.st_size;
+	}
+	else
+	{
+		ec->code = errno;
+	}
+	return s;
 }
 
 bool fs_exists(const char* path, struct error_code* ec)
